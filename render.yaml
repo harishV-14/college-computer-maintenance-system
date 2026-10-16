@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: college-computer-maintenance-system
+    runtime: python
+    buildCommand: "true"
+    startCommand: "python server.py"
+    healthCheckPath: /
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.9"

@@ -39,6 +39,19 @@ On the first startup, the server creates `ccms.db` beside `index.html`. Seed
 records are created only when the database is empty and are not overwritten on
 later startups.
 
+## Deployment on Render
+
+This repository includes a `render.yaml` blueprint for deploying the existing
+Python server as a Render web service. In the Render dashboard, choose
+**New > Blueprint**, connect this repository, and apply the blueprint. Render
+provides the `PORT` environment variable automatically; the server binds to
+`0.0.0.0` in that environment.
+
+The SQLite database is stored on the service filesystem. On plans without a
+persistent disk, database changes can be lost when the service is redeployed or
+restarted. Use a persistent disk or migrate the state to a managed database
+before production use.
+
 ## Demonstration accounts
 
 The following accounts are for local demonstration only. Every account uses

@@ -2,6 +2,7 @@ import hashlib
 import hmac
 import http.cookies
 import json
+import os
 import secrets
 import sqlite3
 import time
@@ -291,5 +292,7 @@ class Handler(BaseHTTPRequestHandler):
 if __name__ == "__main__":
     with connect() as db:
         pass
-    print("CCMS running at http://127.0.0.1:8000")
-    ThreadingHTTPServer(("127.0.0.1", 8000), Handler).serve_forever()
+    host = os.environ.get("HOST", "127.0.0.1")
+    port = int(os.environ.get("PORT", "8000"))
+    print(f"CCMS running at http://{host}:{port}")
+    ThreadingHTTPServer((host, port), Handler).serve_forever()
